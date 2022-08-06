@@ -1,4 +1,4 @@
-Query 1:
+Query 1: Most Sold Media Type
 SELECT
   mt.name AS "Media Type",
   COUNT(c.customerid) AS Sold
@@ -14,7 +14,7 @@ JOIN MediaType mt
 GROUP BY 1
 ORDER BY 2 DESC;
 
-Query 2:
+Query 2: Genre with the Most Tracks
 SELECT
   g.Name AS "Genre Name",
   COUNT(t.TrackId) AS "Number of Tracks"
@@ -27,7 +27,7 @@ GROUP BY 1
 ORDER BY 2 DESC
 LIMIT 5;
 
-Query 3:
+Query 3: Best Selling Album
 SELECT
   a.Title,
   SUM(Quantity) AS Sold
@@ -42,7 +42,7 @@ GROUP BY 1
 ORDER BY 2 DESC
 LIMIT 5;
 
-Query 4:
+Query 4: 5 Most Artists with the Most Albums
 SELECT
   ar.Name,
   COUNT(al.Title) AS "Number of Albums"
