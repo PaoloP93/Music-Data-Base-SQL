@@ -1,0 +1,54 @@
+Query 1:
+SELECT
+  mt.name AS "Media Type",
+  COUNT(c.customerid) AS Sold
+FROM Invoice i
+JOIN Customer c
+  ON c.CustomerId = i.CustomerId
+JOIN invoiceline il
+  ON i.InvoiceId = il.InvoiceId
+JOIN Track t
+  ON il.TrackId = t.TrackId
+JOIN MediaType mt
+  ON mt.MediaTypeId = t.MediaTypeId
+GROUP BY 1
+ORDER BY 2 DESC;
+
+Query 2:
+SELECT
+  g.Name AS "Genre Name",
+  COUNT(t.TrackId) AS "Number of Tracks"
+FROM Genre g
+JOIN Track t
+  ON g.GenreId = t.GenreId
+JOIN InvoiceLine il
+  ON il.TrackId = t.TrackId
+GROUP BY 1
+ORDER BY 2 DESC
+LIMIT 5;
+
+Query 3:
+SELECT
+  a.Title,
+  SUM(Quantity) AS Sold
+FROM Artist ar
+JOIN Album a
+  ON a.ArtistId = ar.ArtistId
+JOIN Track t
+  ON t.AlbumId = a.AlbumId
+JOIN InvoiceLine il
+  ON il.TrackId = t.TrackId
+GROUP BY 1
+ORDER BY 2 DESC
+LIMIT 5;
+
+Query 4:
+SELECT
+  ar.Name,
+  COUNT(al.Title) AS "Number of Albums"
+FROM Album al
+JOIN Artist ar
+  ON ar.ArtistId = al.ArtistId
+GROUP BY 1
+ORDER BY 2 DESC
+LIMIT 5;
